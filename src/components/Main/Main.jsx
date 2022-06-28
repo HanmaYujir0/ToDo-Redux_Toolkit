@@ -16,7 +16,8 @@ const Main = () => {
     setText(e.target.value);
   };
 
-  const handleAddClick = () => {
+  const handleAddClick = (e) => {
+    e.preventDefault()
     if (text !== "") dispatch(add(text));
     setText("");
   };
@@ -34,8 +35,10 @@ const Main = () => {
   return (
     <main>
       <div className={style.input_cont}>
+        <form onSubmit={(e) => handleAddClick(e)}>
         <input type="text" onChange={(e) => handleText(e)} value={text} />
         <button className={style.add_btn} onClick={handleAddClick} >Добавить</button>
+        </form>
       </div>
       <div className={style.addList}>
         {toDos.map((item, id) => {
